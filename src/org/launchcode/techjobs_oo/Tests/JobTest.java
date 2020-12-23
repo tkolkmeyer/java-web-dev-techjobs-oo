@@ -46,6 +46,14 @@ public class JobTest {
         assertFalse(testJob4.equals(testJob5));
 
     }
+
+    @Test
+    public void testToStringMethod() {
+        Job emptyJob = new Job();
+        Job testJob6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertTrue(testJob6.toString().equals("ID: " + testJob6.getId() + "\n" + "Name: " + testJob6.getName() + "\n" + "Employer: " + testJob6.getEmployer().getValue() + "\n" + "Location: " + testJob6.getLocation().getValue() + "\n" + "Position Type: " + testJob6.getPositionType().getValue() + "\n" + "Core Competency: " + testJob6.getCoreCompetency().getValue() + "\n"));
+        assertTrue(emptyJob.toString().equals("ID: " + emptyJob.getId() + "\n" + "Name: " + "Data not available\n" + "Employer: " + "Data not available\n" + "Location: " + "Data not available\n" + "Position Type: " + "Data not available\n" + "Core Competency: " + "Data not available\n"));
+    }
 }
 
 

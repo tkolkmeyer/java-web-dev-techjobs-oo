@@ -97,27 +97,31 @@ public class Job {
 
         jobId = this.getId() + "\n";
 
-        if (this.getName() == null) {
+        if (this.getName() == null && this.getEmployer() == null && this.getLocation() == null && this.getPositionType() == null && this.getCoreCompetency() == null) {
+            return "OOPS! This job does not seem to exist.";
+        }
+
+        if (this.getName().isBlank()) {
             jobName = noData;
         } else {
             jobName = this.getName() + "\n";
         }
-        if (this.getEmployer() == null) {
+        if (this.getEmployer().getValue().isBlank()) {
             jobEmployer = noData;
         } else {
             jobEmployer = this.getEmployer().getValue() + "\n";
         }
-        if (this.getLocation() == null) {
+        if (this.getLocation().getValue().isBlank()) {
             jobLocation = noData;
         } else {
             jobLocation = this.getLocation().getValue() + "\n";
         }
-        if (this.getPositionType() == null) {
+        if (this.getPositionType().getValue().isBlank()) {
             jobPositionType = noData;
         } else {
             jobPositionType = this.getPositionType().getValue() + "\n";
         }
-        if (this.getCoreCompetency() == null) {
+        if (this.getCoreCompetency().getValue().isBlank()) {
             jobCoreCompetency = noData;
         } else {
             jobCoreCompetency = this.getCoreCompetency().getValue() + "\n";

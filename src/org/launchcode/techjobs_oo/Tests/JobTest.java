@@ -7,17 +7,17 @@ import static org.junit.Assert.*;
 
 
 public class JobTest {
+    Job testJob;
+    Job testJob2;
 
     @Before
     public void createJobObject() {
-        Job testJob = new Job();
-        Job testJob2 = new Job();
+        this.testJob = new Job();
+        this.testJob2 = new Job();
     }
 
     @Test
     public void testSettingJobId() {
-        Job testJob = new Job();
-        Job testJob2 = new Job();
         assertFalse(testJob.getId() == testJob2.getId());
 
     }

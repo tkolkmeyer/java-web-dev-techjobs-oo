@@ -28,19 +28,6 @@ public class Job {
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Job job = (Job) o;
-        return id == job.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
-
     public int getId() {
         return id;
     }
@@ -85,47 +72,39 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
+    private String fullField(JobField field){
+        if (field.getValue().isBlank()) {
+            return "Data not available\n";
+        } else {
+            return field.getValue() + "\n";
+        }
+    }
+
     @Override
     public String toString() {
-        String jobId = "";
-        String jobName = "";
-        String jobEmployer = "";
-        String jobLocation = "";
-        String jobPositionType = "";
-        String jobCoreCompetency = "";
-        String noData = "Data not available\n";
-
-        jobId = this.getId() + "\n";
+        String jobName;
 
         if (this.getName() == null && this.getEmployer() == null && this.getLocation() == null && this.getPositionType() == null && this.getCoreCompetency() == null) {
             return "OOPS! This job does not seem to exist.";
         }
-
         if (this.getName().isBlank()) {
-            jobName = noData;
+            jobName = "Data not available\n";
         } else {
             jobName = this.getName() + "\n";
         }
-        if (this.getEmployer().getValue().isBlank()) {
-            jobEmployer = noData;
-        } else {
-            jobEmployer = this.getEmployer().getValue() + "\n";
-        }
-        if (this.getLocation().getValue().isBlank()) {
-            jobLocation = noData;
-        } else {
-            jobLocation = this.getLocation().getValue() + "\n";
-        }
-        if (this.getPositionType().getValue().isBlank()) {
-            jobPositionType = noData;
-        } else {
-            jobPositionType = this.getPositionType().getValue() + "\n";
-        }
-        if (this.getCoreCompetency().getValue().isBlank()) {
-            jobCoreCompetency = noData;
-        } else {
-            jobCoreCompetency = this.getCoreCompetency().getValue() + "\n";
-        }
-        return "ID: " + jobId + "Name: " + jobName + "Employer: " + jobEmployer + "Location: " + jobLocation + "Position Type: " + jobPositionType + "Core Competency: " + jobCoreCompetency;
+        return "ID: " + this.getId() + "\n" + "Name: " + jobName + "Employer: " + fullField(this.employer) + "Location: " + fullField(this.location) + "Position Type: " + fullField(this.positionType) + "Core Competency: " + fullField(this.coreCompetency);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Job job = (Job) o;
+        return id == job.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }
